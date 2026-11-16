@@ -73,7 +73,7 @@ summary { cursor: pointer; font-weight: 650; }
 .intro, .about > *, .card { min-width: 0; }
 .portrait { width: 100%; max-width: 680px; justify-self: center; }
 .language-options { display: flex; gap: .4rem; flex-shrink: 0; }
-.header .language-options button { display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 7px; }
+.header .language-options button { border: 0; display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 7px; }
 .language-options svg { display: block; width: 28px; height: 20px; border-radius: 2px; }
 .footer { flex-wrap: wrap; }
 @media (max-width: 730px) {
