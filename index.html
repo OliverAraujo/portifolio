@@ -6,14 +6,15 @@
 <meta name="description" content="Portfólio de Oliver Araújo, em transição para desenvolvimento back-end com Python.">
 <meta name="theme-color" content="#171819">
 <title>Oliver Araújo · Portfólio Python</title>
-<link rel="stylesheet" href="style.css?v=20261116-compact-nav">
+<link rel="stylesheet" href="style.css?v=20261116-mobile-menu">
 <script src="lang.js?v=20261116-fluid-flags" defer></script>
 </head>
 <body id="inicio">
 <a class="skip" href="#conteudo" data-en="Skip to content">Ir para o conteúdo</a>
 <header class="wrap header">
   <a href="#inicio" class="brand" aria-label="Oliver Araújo">OA<span>.</span></a>
-  <nav aria-label="Navegação principal">
+  <button class="menu-toggle" type="button" aria-label="Menu" aria-controls="main-navigation" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <nav id="main-navigation" aria-label="Navegação principal">
     <a href="#sobre" data-en="About">Sobre</a>
     <a href="#projetos" data-en="Projects">Projetos</a>
     <a href="#contato" data-en="Contact">Contato</a>
@@ -69,6 +70,31 @@
 </main>
 <footer class="wrap footer"><span>© Oliver Araújo</span><a href="#inicio" data-en="Back to top ↑">Voltar ao topo ↑</a></footer>
 <script>
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainNavigation = document.querySelector('#main-navigation');
+  function closeNavigation() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    mainNavigation.dataset.open = 'false';
+  }
+  menuToggle.addEventListener('click', () => {
+    const open = menuToggle.getAttribute('aria-expanded') !== 'true';
+    menuToggle.setAttribute('aria-expanded', String(open));
+    mainNavigation.dataset.open = String(open);
+  });
+  mainNavigation.addEventListener('click', event => {
+    if (event.target.closest('a')) closeNavigation();
+  });
+  document.addEventListener('click', event => {
+    if (!mainNavigation.contains(event.target) && !menuToggle.contains(event.target)) closeNavigation();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      closeNavigation();
+      menuToggle.focus();
+    }
+  });
+  window.matchMedia('(max-width: 730px)').addEventListener('change', closeNavigation);
   const repositoryList = document.querySelector('#github-repos');
   const githubOwner = 'OliverAraujo';
 
