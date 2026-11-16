@@ -19,7 +19,8 @@ a:hover, summary:hover { color: var(--lime); }
 .header { min-height: 88px; display: flex; align-items: center; gap: clamp(.8rem, 4vw, 3rem); border-bottom: 1px solid var(--line); }
 .brand { font-size: 1.8rem; font-weight: 850; letter-spacing: -.1em; margin-right: auto; }
 .brand span, h1 span, .role span { color: var(--lime); }
-.header nav { display: flex; gap: clamp(.7rem, 3vw, 2rem); font-size: .9rem; }
+.header nav { display: flex; flex: 0 0 auto; justify-content: flex-start; gap: .75rem; font-size: .9rem; }
+.header nav a { white-space: nowrap; padding-block: .5rem; }
 .header button { background: transparent; color: var(--lime); border: 1px solid var(--line); border-radius: 5px; padding: .28rem .55rem; cursor: pointer; font: inherit; font-size: .78rem; }
 .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; min-height: 540px; }
 .intro { padding-block: 3rem; }
@@ -82,5 +83,5 @@ summary { cursor: pointer; font-weight: 650; }
 }
 @media (max-width: 420px) {
   .header { gap: .65rem; }
-  .header nav { order: 3; width: 100%; justify-content: space-between; }
+  .header nav { order: 3; width: 100%; justify-content: flex-start; }
 }
