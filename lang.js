@@ -22,9 +22,9 @@ const spanishTranslations = {
   "Back to top ↑": "Volver arriba ↑"
 };
 const languageSettings = {
-  'pt-BR': { label: '🇧🇷 PT', name: 'Português', title: 'Oliver Araújo · Portfólio Python', navigation: 'Navegação principal', portrait: 'Oliver Araújo com camisa azul' },
-  en: { label: '🇺🇸 ENG', name: 'English', title: 'Oliver Araújo · Python Portfolio', navigation: 'Main navigation', portrait: 'Oliver Araújo wearing a blue shirt' },
-  es: { label: '🇪🇸 ESP', name: 'Español', title: 'Oliver Araújo · Portafolio Python', navigation: 'Navegación principal', portrait: 'Oliver Araújo con camisa azul' },
+  'pt-BR': { label: '🇧🇷', name: 'Português', title: 'Oliver Araújo · Portfólio Python', navigation: 'Navegação principal', portrait: 'Oliver Araújo com camisa azul' },
+  en: { label: '🇺🇸', name: 'English', title: 'Oliver Araújo · Python Portfolio', navigation: 'Main navigation', portrait: 'Oliver Araújo wearing a blue shirt' },
+  es: { label: '🇪🇸', name: 'Español', title: 'Oliver Araújo · Portafolio Python', navigation: 'Navegación principal', portrait: 'Oliver Araújo con camisa azul' },
 };
 const translations = Array.from(document.querySelectorAll('[data-en]'), element => ({
   element,
