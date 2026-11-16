@@ -32,7 +32,9 @@ const translations = Array.from(document.querySelectorAll('[data-en]'), element 
   en: element.dataset.en,
   es: spanishTranslations[element.dataset.en],
 }));
+const flagIcons = {"pt-BR":"<svg viewBox=\"0 0 28 20\" aria-hidden=\"true\"><path fill=\"#009739\" d=\"M0 0h28v20H0z\"/><path fill=\"#ffdf00\" d=\"m14 2 12 8-12 8L2 10z\"/><circle cx=\"14\" cy=\"10\" r=\"5\" fill=\"#002776\"/><path d=\"M9.4 8.2q5-.3 9 3.6\" fill=\"none\" stroke=\"white\" stroke-width=\"1\"/></svg>","en":"<svg viewBox=\"0 0 28 20\" aria-hidden=\"true\"><path fill=\"#fff\" d=\"M0 0h28v20H0z\"/><path stroke=\"#b22234\" stroke-width=\"1.54\" d=\"M0 .77h28M0 3.85h28M0 6.92h28M0 10h28M0 13.08h28M0 16.15h28M0 19.23h28\"/><path fill=\"#3c3b6e\" d=\"M0 0h12v10.77H0z\"/><path stroke=\"#fff\" stroke-width=\"1\" stroke-dasharray=\"1 2\" d=\"M1 2h10M2 4h9M1 6h10M2 8h9\"/></svg>","es":"<svg viewBox=\"0 0 28 20\" aria-hidden=\"true\"><path fill=\"#aa151b\" d=\"M0 0h28v20H0z\"/><path fill=\"#f1bf00\" d=\"M0 5h28v10H0z\"/><path fill=\"#aa151b\" d=\"M7 8h4v5H7z\"/><path stroke=\"#fff\" stroke-width=\".7\" d=\"M6 8v5m6-5v5\"/><path fill=\"#aa151b\" d=\"M7 6h4v1H7z\"/></svg>"};
 const languageOptions = document.createElement('div');
+languageOptions.className = 'language-options';
 languageOptions.setAttribute('role', 'group');
 languageOptions.setAttribute('aria-label', 'Idioma / Language');
 languageOptions.style.cssText = 'display:flex;gap:0.35rem;flex-shrink:0';
@@ -59,7 +61,7 @@ function setLanguage(language) {
 for (const [code, settings] of Object.entries(languageSettings)) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.textContent = settings.label;
+  button.innerHTML = flagIcons[code];
   button.setAttribute('aria-label', settings.name);
   button.addEventListener('click', () => setLanguage(code));
   languageButtons.set(code, button);
