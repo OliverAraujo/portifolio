@@ -36,32 +36,16 @@
 
   <section class="wrap section" id="projetos">
     <h2 data-en="Projects">Projetos</h2>
-    <p class="muted" data-en="Study projects planned for my back-end learning journey.">Projetos de estudo planejados para minha jornada em back-end.</p>
+    <p class="muted" data-en="Selected projects from my development journey.">Projetos selecionados da minha jornada em desenvolvimento.</p>
     <section aria-labelledby="github-projects">
-      <h3 id="github-projects" data-en="GitHub repositories">Repositórios do GitHub</h3>
+      <h3 id="github-projects" data-en="Featured projects">Projetos em destaque</h3>
       <p id="github-loading" class="muted" role="status" data-en="Loading repositories…">Carregando repositórios…</p>
-      <p id="github-empty" class="muted" hidden data-en="No public projects to show yet.">Ainda não há projetos públicos para exibir.</p>
+      <p id="github-empty" class="muted" hidden data-en="No featured projects yet.">Ainda não há projetos em destaque.</p>
       <p id="github-error" class="muted" hidden data-en="The repository list is temporarily unavailable.">A lista de repositórios está temporariamente indisponível.</p>
       <ul id="github-repos" style="list-style:none;padding:0" hidden></ul>
       <p><a class="button" href="https://github.com/OliverAraujo?tab=repositories" data-en="View GitHub profile ↗">Ver perfil no GitHub ↗</a></p>
     </section>
-    <h3 style="margin-top:2rem" data-en="Study plans">Planos de estudo</h3>
-    <div class="cards">
-      <article class="card">
-        <div class="preview terminal" aria-hidden="true"><div class="bar">● ● ●</div><code><b>&gt;</b> adicionar tarefa<br><b>&gt;</b> listar tarefas<br><b>&gt;</b> concluir tarefa<span>_</span></code></div>
-        <p class="tag" data-en="Planned · Python">Planejado · Python</p>
-        <h3 data-en="Task manager">Gerenciador de tarefas</h3>
-        <p data-en="A command-line tool to add, list and complete tasks.">Uma ferramenta de terminal para adicionar, listar e concluir tarefas.</p>
-        <details><summary data-en="Study plan">Plano de estudo</summary><p data-en="Start with lists and functions, then save tasks to a file so they persist between sessions.">Começar com listas e funções, depois salvar as tarefas em arquivo para mantê-las entre sessões.</p></details>
-      </article>
-      <article class="card">
-        <div class="preview routes" aria-hidden="true"><code><span>GET</span> /chamados<br><span>POST</span> /chamados<br><span>PATCH</span> /chamados/{id}</code></div>
-        <p class="tag" data-en="Planned · API">Planejado · API</p>
-        <h3 data-en="Support ticket API">API de chamados</h3>
-        <p data-en="An API to open tickets and track their status, inspired by IT support workflows.">Uma API para abrir chamados e acompanhar seu status, inspirada na rotina de suporte em TI.</p>
-        <details><summary data-en="Study plan">Plano de estudo</summary><p data-en="Define the routes, validate requests, and then connect the API to a database.">Definir as rotas, validar os dados das requisições e depois conectar a API a um banco de dados.</p></details>
-      </article>
-    </div>
+
   </section>
 
   <section class="wrap section about" id="sobre">
@@ -92,12 +76,12 @@
     const fragment = document.createDocumentFragment();
     for (let page = 1; ; page += 1) {
       const response = await fetch(
-        `https://api.github.com/users/${githubOwner}/repos?type=owner&sort=created&direction=desc&per_page=100&page=${page}`
+        `https://api.github.com/users/${githubOwner}/starred?sort=created&direction=desc&per_page=100&page=${page}`
       );
       if (!response.ok) throw new Error('GitHub returned ' + response.status);
       const repositories = await response.json();
       for (const repository of repositories) {
-        if (repository.fork || repository.archived || ['portifolio', githubOwner.toLowerCase()].includes(repository.name.toLowerCase())) continue;
+        if (repository.owner?.login.toLowerCase() !== githubOwner.toLowerCase() || repository.fork || repository.archived || ['portifolio', githubOwner.toLowerCase()].includes(repository.name.toLowerCase())) continue;
 
         const card = document.createElement('li');
         card.className = 'card';
