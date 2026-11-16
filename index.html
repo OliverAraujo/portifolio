@@ -40,10 +40,10 @@
     <section aria-labelledby="github-projects">
       <h3 id="github-projects" data-en="Featured projects">Projetos em destaque</h3>
       <p id="github-loading" class="muted" role="status" data-en="Loading repositories…">Carregando repositórios…</p>
-      <p id="github-empty" class="muted" hidden data-en="No featured projects yet.">Ainda não há projetos em destaque.</p>
+      <p id="github-empty" class="muted" hidden data-en="No pinned projects yet.">Ainda não há projetos fixados para exibir.</p>
       <p id="github-error" class="muted" hidden data-en="The repository list is temporarily unavailable.">A lista de repositórios está temporariamente indisponível.</p>
       <ul id="github-repos" style="list-style:none;padding:0" hidden></ul>
-      <p><a class="button" href="https://github.com/OliverAraujo?tab=repositories" data-en="View GitHub profile ↗">Ver perfil no GitHub ↗</a></p>
+      <p><a class="button" href="https://github.com/OliverAraujo" data-en="View GitHub profile ↗">Ver perfil no GitHub ↗</a></p>
     </section>
 
   </section>
@@ -74,20 +74,21 @@
 
   async function loadRepositories() {
     const fragment = document.createDocumentFragment();
-    for (let page = 1; ; page += 1) {
-      const response = await fetch(
-        `https://api.github.com/users/${githubOwner}/starred?sort=created&direction=desc&per_page=100&page=${page}`
-      );
-      if (!response.ok) throw new Error('GitHub returned ' + response.status);
-      const repositories = await response.json();
-      for (const repository of repositories) {
-        if (repository.owner?.login.toLowerCase() !== githubOwner.toLowerCase() || repository.fork || repository.archived || ['portifolio', githubOwner.toLowerCase()].includes(repository.name.toLowerCase())) continue;
+    const response = await fetch(
+      'https://raw.githubusercontent.com/OliverAraujo/portifolio/main/pinned-projects.json',
+      { cache: 'no-store' }
+    );
+    if (!response.ok) throw new Error('GitHub returned ' + response.status);
+    const repositories = await response.json();
+    if (!Array.isArray(repositories)) throw new Error('Invalid pinned projects');
+    for (const repository of repositories) {
+        if (!/^https:\/\/github\.com\/[^/]+\/[^/]+$/.test(repository.html_url)) continue;
 
         const card = document.createElement('li');
         card.className = 'card';
         const title = document.createElement('h3');
         const link = document.createElement('a');
-        link.href = `https://github.com/${githubOwner}/${encodeURIComponent(repository.name)}`;
+        link.href = repository.html_url;
         link.textContent = repository.name + ' ↗';
         link.style.overflowWrap = 'anywhere';
         title.append(link);
@@ -104,8 +105,6 @@
           card.append(language);
         }
         fragment.append(card);
-      }
-      if (repositories.length < 100) break;
     }
 
     if (fragment.childElementCount) {
