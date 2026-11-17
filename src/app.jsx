@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { languageSettings, flagIcons, translations } from './translations.js';
+import { aboutContent } from './about.js';
 import portraitUrl from '../oliver.webp';
 import '../style.css';
 
@@ -166,14 +167,18 @@ function FeaturedProjects({ t }) {
   );
 }
 
-function About({ t }) {
+function About({ t, language }) {
+  const content = aboutContent[language];
   return (
     <Reveal className="wrap section about" id="sobre">
       <h2>{t('About me')}</h2>
       <div>
-        <p>{t('I come from an IT background and am studying Python to move into back-end development. I want to apply what I learn to practical problems, such as tracking IT support requests.')}</p>
-        <h3>{t('What I’m studying')}</h3>
-        <ul className="skills"><li>Python</li><li>{t('Programming fundamentals')}</li></ul>
+        {content.paragraphs.map(text => <p key={text}>{text}</p>)}
+        <h3>{content.technicalTitle}</h3>
+        <ul>{content.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
+        <h3>{content.careerTitle}</h3>
+        <p>{content.roles}</p>
+        {content.closing.map(text => <p key={text}>{text}</p>)}
       </div>
     </Reveal>
   );
@@ -211,7 +216,7 @@ function App() {
       <main id="conteudo">
         <Hero language={language} t={t} />
         <FeaturedProjects t={t} />
-        <About t={t} />
+        <About t={t} language={language} />
         <Contact t={t} />
       </main>
       <Footer t={t} />
