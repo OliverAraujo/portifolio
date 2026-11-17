@@ -4,7 +4,7 @@ on:
     branches: [main]
     paths: ['.github/workflows/sync-pinned.yml']
   schedule:
-    - cron: '17 * * * *'
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -42,6 +42,7 @@ jobs:
                 description: repo.description,
                 language: repo.primaryLanguage?.name || null
               }));
+            core.info(`Found ${projects.length} public pinned repositories: ${projects.map(repo => repo.full_name).join(', ')}`);
             const path = 'pinned-projects.json';
             const content = JSON.stringify(projects, null, 2) + '\n';
             let sha;
