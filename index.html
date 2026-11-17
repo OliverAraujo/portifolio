@@ -1,150 +1,16 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Portfólio de Oliver Araújo, em transição para desenvolvimento back-end com Python.">
-<meta name="theme-color" content="#171819">
-<title>Oliver Araújo · Portfólio Python</title>
-<link rel="stylesheet" href="style.css?v=20261116-mobile-menu">
-<script src="lang.js?v=20261116-fluid-flags" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfólio de Oliver Araújo, em transição para desenvolvimento back-end com Python.">
+  <meta name="theme-color" content="#171819">
+  <title>Oliver Araújo · Portfólio Python</title>
+  <script type="module" crossorigin src="./assets/index-2e73QPVB.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CX37kdxT.css">
 </head>
 <body id="inicio">
-<a class="skip" href="#conteudo" data-en="Skip to content">Ir para o conteúdo</a>
-<header class="wrap header">
-  <a href="#inicio" class="brand" aria-label="Oliver Araújo">OA<span>.</span></a>
-  <button class="menu-toggle" type="button" aria-label="Menu" aria-controls="main-navigation" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-  <nav id="main-navigation" aria-label="Navegação principal">
-    <a href="#sobre" data-en="About">Sobre</a>
-    <a href="#projetos" data-en="Projects">Projetos</a>
-    <a href="#contato" data-en="Contact">Contato</a>
-  </nav>
-  <button id="language" type="button" hidden aria-label="Read in English">EN</button>
-</header>
-<main id="conteudo">
-  <section class="wrap hero" aria-labelledby="nome">
-    <div class="intro">
-      <h1 id="nome">Oliver<br>Araújo<span>.</span></h1>
-      <p class="role">Back-end <span>·</span> Python</p>
-      <p class="lede" data-en="I’m transitioning from IT to back-end development and building my skills with Python.">Estou migrando da área de TI para desenvolvimento back-end e construindo minha base em Python.</p>
-      <div class="actions">
-        <a href="#projetos" class="button primary" data-en="Explore projects ↘">Ver projetos ↘</a>
-        <a href="#contato" class="button" data-en="Get in touch">Contato</a>
-      </div>
-    </div>
-    <div class="portrait"><img src="oliver.webp" alt="Oliver Araújo com camisa azul" data-alt-en="Oliver Araújo wearing a blue shirt"></div>
-  </section>
-
-  <section class="wrap section" id="projetos">
-    <h2 data-en="Projects">Projetos</h2>
-    <p class="muted" data-en="Selected projects from my development journey.">Projetos selecionados da minha jornada em desenvolvimento.</p>
-    <section aria-labelledby="github-projects">
-      <h3 id="github-projects" data-en="Featured projects">Projetos em destaque</h3>
-      <p id="github-loading" class="muted" role="status" data-en="Loading repositories…">Carregando repositórios…</p>
-      <p id="github-empty" class="muted" hidden data-en="No pinned projects yet.">Ainda não há projetos fixados para exibir.</p>
-      <p id="github-error" class="muted" hidden data-en="The repository list is temporarily unavailable.">A lista de repositórios está temporariamente indisponível.</p>
-      <ul id="github-repos" style="list-style:none;padding:0" hidden></ul>
-      <p><a class="button" href="https://github.com/OliverAraujo" data-en="View GitHub profile ↗">Ver perfil no GitHub ↗</a></p>
-    </section>
-
-  </section>
-
-  <section class="wrap section about" id="sobre">
-    <h2 data-en="About me">Sobre mim</h2>
-    <div>
-      <p data-en="I come from an IT background and am studying Python to move into back-end development. I want to apply what I learn to practical problems, such as tracking IT support requests.">Venho da área de TI e estudo Python para migrar para desenvolvimento back-end. Quero aplicar o que aprendo a problemas práticos, como organizar e acompanhar chamados de suporte.</p>
-      <h3 data-en="What I’m studying">O que estou estudando</h3>
-      <ul class="skills"><li>Python</li><li data-en="Programming fundamentals">Lógica de programação</li></ul>
-    </div>
-  </section>
-
-  <section class="wrap section contact" id="contato">
-    <h2 data-en="Contact">Contato</h2>
-    <p data-en="Based in Brazil and open to international remote opportunities in back-end development.">Estou no Brasil e aberto a oportunidades remotas internacionais em desenvolvimento back-end.</p>
-    <div class="actions">
-      <a class="button primary" href="https://www.linkedin.com/in/oliver-ara%C3%BAjo/" data-en="Connect on LinkedIn ↗">Fale comigo no LinkedIn ↗</a>
-      <a class="button" href="https://www.instagram.com/euoliveraraujo/">Instagram ↗</a>
-      <a class="button" href="mailto:oliverandre1994@gmail.com" data-en="Email ↗">E-mail ↗</a>
-    </div>
-  </section>
-</main>
-<footer class="wrap footer"><span>© Oliver Araújo</span><a href="#inicio" data-en="Back to top ↑">Voltar ao topo ↑</a></footer>
-<script>
-
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mainNavigation = document.querySelector('#main-navigation');
-  function closeNavigation() {
-    menuToggle.setAttribute('aria-expanded', 'false');
-    mainNavigation.dataset.open = 'false';
-  }
-  menuToggle.addEventListener('click', () => {
-    const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-    menuToggle.setAttribute('aria-expanded', String(open));
-    mainNavigation.dataset.open = String(open);
-  });
-  mainNavigation.addEventListener('click', event => {
-    if (event.target.closest('a')) closeNavigation();
-  });
-  document.addEventListener('click', event => {
-    if (!mainNavigation.contains(event.target) && !menuToggle.contains(event.target)) closeNavigation();
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-      closeNavigation();
-      menuToggle.focus();
-    }
-  });
-  window.matchMedia('(max-width: 730px)').addEventListener('change', closeNavigation);
-  const repositoryList = document.querySelector('#github-repos');
-  const githubOwner = 'OliverAraujo';
-
-  async function loadRepositories() {
-    const fragment = document.createDocumentFragment();
-    const response = await fetch(
-      'https://raw.githubusercontent.com/OliverAraujo/portifolio/main/pinned-projects.json',
-      { cache: 'no-store' }
-    );
-    if (!response.ok) throw new Error('GitHub returned ' + response.status);
-    const repositories = await response.json();
-    if (!Array.isArray(repositories)) throw new Error('Invalid pinned projects');
-    for (const repository of repositories) {
-        if (!/^https:\/\/github\.com\/[^/]+\/[^/]+$/.test(repository.html_url)) continue;
-
-        const card = document.createElement('li');
-        card.className = 'card';
-        const title = document.createElement('h3');
-        const link = document.createElement('a');
-        link.href = repository.html_url;
-        link.textContent = repository.name + ' ↗';
-        link.style.overflowWrap = 'anywhere';
-        title.append(link);
-        card.append(title);
-        if (repository.description) {
-          const description = document.createElement('p');
-          description.textContent = repository.description;
-          card.append(description);
-        }
-        if (repository.language) {
-          const language = document.createElement('p');
-          language.className = 'tag';
-          language.textContent = repository.language;
-          card.append(language);
-        }
-        fragment.append(card);
-    }
-
-    if (fragment.childElementCount) {
-      repositoryList.append(fragment);
-      repositoryList.className = 'cards';
-      repositoryList.hidden = false;
-    } else {
-      document.querySelector('#github-empty').hidden = false;
-    }
-  }
-
-  loadRepositories()
-    .catch(() => { document.querySelector('#github-error').hidden = false; })
-    .finally(() => { document.querySelector('#github-loading').hidden = true; });
-</script>
+  <div id="root"></div>
+  <noscript>Ative o JavaScript para abrir o portfólio. Contato: oliverandre1994@gmail.com.</noscript>
 </body>
 </html>

@@ -101,3 +101,42 @@ summary { cursor: pointer; font-weight: 650; }
   .header nav[data-open="true"] { display: flex; flex-direction: column; gap: 0; }
   .header nav a { display: block; padding: .75rem 1rem; min-height: 44px; }
 }
+
+/* React portfolio and motion. */
+.hero { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); min-height: 540px; }
+h1 { font-size: clamp(3.5rem, 6vw, 7.5rem); letter-spacing: -.065em; line-height: 1; }
+.role { color: var(--lime); margin-top: 1rem; }
+.lede { max-width: 48ch; }
+.portrait { max-width: 560px; }
+.section { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+h2::before { content: ''; display: inline-block; width: 5px; height: .8em; margin-right: .5em; background: var(--lime); }
+.cards { padding: 0; list-style: none; }
+.project-card { display: flex; align-items: center; gap: 1.25rem; }
+.project-symbol { flex: 0 0 90px; aspect-ratio: 1.2; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--lime); font: 700 2rem monospace; }
+.project-copy { min-width: 0; flex: 1; }
+.project-copy h3 { overflow-wrap: anywhere; }
+.project-links { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+.project-links a { color: var(--lime); font-size: .9rem; font-weight: 700; }
+.github-link { margin-top: 1rem; }
+.about { grid-template-columns: 1fr; }
+.about p { max-width: 85ch; }
+.language-options button[aria-pressed="true"] { background: var(--lime); }
+.language-options button[aria-pressed="false"] { background: transparent; }
+.button { font-family: inherit; cursor: pointer; }
+button.button { background: transparent; color: var(--text); margin-top: .75rem; }
+@keyframes reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .animate-in { animation: reveal .65s ease-out both; }
+  .portrait.animate-in { animation-delay: .12s; }
+  .button, .card, .language-options button { transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+  .button:hover { transform: translateY(-2px); }
+  .card:hover { transform: translateY(-4px); border-color: var(--lime); }
+}
+@media (max-width: 730px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .portrait { max-width: 430px; }
+  h1 { font-size: clamp(3rem, 13vw, 5.5rem); }
+  .project-symbol { flex-basis: 60px; font-size: 1.5rem; }
+  .project-card { gap: .75rem; }
+}
