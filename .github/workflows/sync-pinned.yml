@@ -2,7 +2,7 @@ name: Sync pinned projects
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/sync-pinned.yml']
+    paths: ['.github/workflows/sync-pinned.yml', 'featured-fallback.json']
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
               }
             `, {login: context.repo.owner});
             if (!result.user) throw new Error('GitHub user not found');
-            const projects = result.user.pinnedItems.nodes
+            let projects = result.user.pinnedItems.nodes
               .filter(repo => repo.name && !repo.isPrivate)
               .map(repo => ({
                 name: repo.name,
@@ -42,7 +42,26 @@ jobs:
                 description: repo.description,
                 language: repo.primaryLanguage?.name || null
               }));
-            core.info(`Found ${projects.length} public pinned repositories: ${projects.map(repo => repo.full_name).join(', ')}`);
+            if (projects.length === 0) {
+              core.warning('No pins visible to the API; using the owner-selected fallback.');
+              const fallback = await github.rest.repos.getContent({
+                ...context.repo, path: 'featured-fallback.json', ref: 'main'
+              });
+              const names = JSON.parse(Buffer.from(fallback.data.content, 'base64').toString());
+              if (!Array.isArray(names) || names.length > 6) throw new Error('Invalid fallback list');
+              projects = [];
+              for (const fullName of names) {
+                if (typeof fullName !== 'string' || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(fullName)) throw new Error('Invalid repository name');
+                const [owner, repo] = fullName.split('/');
+                const { data } = await github.rest.repos.get({ owner, repo });
+                if (data.private) continue;
+                projects.push({
+                  name: data.name, full_name: data.full_name, html_url: data.html_url,
+                  description: data.description, language: data.language
+                });
+              }
+            }
+            core.info(`Found ${projects.length} featured public repositories: ${projects.map(repo => repo.full_name).join(', ')}`);
             const path = 'pinned-projects.json';
             const content = JSON.stringify(projects, null, 2) + '\n';
             let sha;
