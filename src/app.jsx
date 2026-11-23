@@ -197,7 +197,7 @@ function Contact({ t }) {
   return (
     <Reveal className="wrap section contact" id="contato">
       <h2>{t('Contact')}</h2>
-      <p>{t('Based in Brazil and open to international remote opportunities in back-end development.')}</p>
+      <p>{t('Get in touch with me via:')}</p>
       <div className="actions">
         <a className="button" href="https://www.linkedin.com/in/oliver-ara%C3%BAjo/">{t('Connect on LinkedIn ↗')}</a>
         <a className="button" href="https://www.instagram.com/euoliveraraujo/">Instagram ↗</a>
