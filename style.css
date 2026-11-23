@@ -162,8 +162,36 @@ button.button { background: transparent; color: var(--text); margin-top: .75rem;
   .header-controls { grid-column: 1 / -1; grid-row: 2; justify-self: end; }
 }
 
-/* Center the profile and contact sections. */
-.about, .contact { text-align: center; }
-.about p, .contact p { margin-inline: auto; }
-.about ul { padding-left: 0; list-style-position: inside; }
-.contact .actions { justify-content: center; }
+/* Decorative code animation beside the left-aligned biography. */
+.about { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.about-copy h2 { margin-bottom: 1.4rem; }
+.about-visual { min-width: 0; position: sticky; top: 3rem; padding-block: 3rem; }
+.code-art { position: relative; isolation: isolate; max-width: 470px; min-height: 360px; margin-inline: auto; display: grid; align-items: center; padding: 2rem 1rem; }
+.code-orbit { position: absolute; z-index: -1; width: 85%; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; left: 7.5%; top: 0; }
+.orbit-two { transform: scale(.78); border-style: dashed; }
+.orbit-one::after { content: ''; position: absolute; top: 15%; left: 14%; width: 12px; height: 12px; border-radius: 50%; background: var(--lime); }
+.code-window { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 48px #0002; overflow: hidden; transform: rotate(-3deg); }
+.code-window-bar { display: flex; align-items: center; gap: 6px; padding: 1rem; border-bottom: 1px solid var(--line); }
+.code-window-bar span { width: 8px; height: 8px; background: var(--muted); border-radius: 50%; opacity: .55; }
+.code-window-bar b { margin-left: auto; font: 400 .875rem monospace; color: var(--muted); }
+.code-lines { padding: 1.5rem; font: .95rem/1.9 monospace; color: var(--text); }
+.code-lines em { font-style: normal; color: var(--lime); }
+.code-lines strong { color: var(--lime); font-weight: 400; }
+.code-lines .indent { padding-left: 1.3rem; }
+.code-space { margin-top: 1rem; }
+.code-cursor { display: inline-block; width: 7px; height: 1em; background: var(--lime); vertical-align: middle; margin-left: 5px; }
+.code-badge { position: absolute; bottom: .5rem; right: .5rem; background: var(--highlight); color: #171819; border-radius: 14px; padding: .6rem 1rem; font: 700 1.5rem monospace; transform: rotate(8deg); }
+@keyframes code-float { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-12px) rotate(-1deg); } }
+@keyframes code-orbit { to { transform: rotate(360deg); } }
+@keyframes code-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .code-window { animation: code-float 5s ease-in-out infinite alternate; }
+  .orbit-one { animation: code-orbit 28s linear infinite; }
+  .code-cursor { animation: code-blink 1.2s step-end infinite; }
+}
+@media (max-width: 730px) {
+  .about { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-visual { position: static; padding-block: 0; }
+  .code-art { max-width: 370px; min-height: 330px; }
+  .code-lines { padding: 1rem; font-size: .875rem; }
+}

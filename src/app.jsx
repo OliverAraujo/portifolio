@@ -176,12 +176,34 @@ function FeaturedProjects({ t }) {
   );
 }
 
+function CodeAnimation() {
+  return (
+    <div className="code-art" aria-hidden="true">
+      <div className="code-orbit orbit-one" /><div className="code-orbit orbit-two" />
+      <div className="code-window">
+        <div className="code-window-bar"><span /><span /><span /><b>learning.py</b></div>
+        <div className="code-lines">
+          <div><em>class</em> Developer:</div>
+          <div className="indent">name = <strong>"Oliver"</strong></div>
+          <div className="indent">focus = <strong>"Python"</strong></div>
+          <div className="code-space"><em>while</em> learning:</div>
+          <div className="indent">practice()</div>
+          <div className="indent">build()</div>
+          <div className="indent">improve()<span className="code-cursor" /></div>
+        </div>
+      </div>
+      <span className="code-badge">&lt;/&gt;</span>
+    </div>
+  );
+}
+
 function About({ t, language }) {
   const content = aboutContent[language];
   return (
     <Reveal className="wrap section about" id="sobre">
-      <h2>{t('About me')}</h2>
-      <div>
+      <div className="about-visual"><CodeAnimation /></div>
+      <div className="about-copy">
+        <h2>{t('About me')}</h2>
         {content.paragraphs.map(text => <p key={text}>{text}</p>)}
         <h3>{content.technicalTitle}</h3>
         <ul>{content.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
