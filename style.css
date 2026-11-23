@@ -161,3 +161,9 @@ button.button { background: transparent; color: var(--text); margin-top: .75rem;
   .header .brand { justify-self: end; }
   .header-controls { grid-column: 1 / -1; grid-row: 2; justify-self: end; }
 }
+
+/* Center the profile and contact sections. */
+.about, .contact { text-align: center; }
+.about p, .contact p { margin-inline: auto; }
+.about ul { padding-left: 0; list-style-position: inside; }
+.contact .actions { justify-content: center; }
