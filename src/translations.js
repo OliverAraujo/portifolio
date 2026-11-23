@@ -28,11 +28,12 @@ export const flagIcons = {
 };
 export const translations = {
   "pt-BR": {
+    "Technology is my next step": "Tecnologia é o meu próximo passo",
     "Skip to content": "Ir para o conteúdo",
     "About": "Sobre",
     "Projects": "Projetos",
     "Contact": "Contato",
-    "I’m transitioning from IT to back-end development and building my skills with Python.": "Estou migrando da área de TI para desenvolvimento back-end e construindo minha base em Python.",
+    "I have a degree in Systems Analysis and Development and am seeking my first opportunity in technology. I am deepening my knowledge of Python and back-end development, turning learning into practical projects. I want to contribute solutions, learn from a team, and grow professionally.": "Sou formado em Análise e Desenvolvimento de Sistemas e busco minha primeira oportunidade na área de Tecnologia. Estou aprofundando meus conhecimentos em Python e desenvolvimento back-end, transformando aprendizado em projetos práticos. Quero contribuir com soluções, aprender com uma equipe e crescer profissionalmente.",
     "Explore projects ↘": "Ver projetos ↘",
     "Get in touch": "Contato",
     "Selected projects from my development journey.": "Projetos selecionados da minha jornada em desenvolvimento.",
@@ -53,11 +54,12 @@ export const translations = {
     "Try again": "Tentar novamente"
   },
   "es": {
+    "Technology is my next step": "La tecnología es mi próximo paso",
     "Skip to content": "Ir al contenido",
     "About": "Sobre mí",
     "Projects": "Proyectos",
     "Contact": "Contacto",
-    "I’m transitioning from IT to back-end development and building my skills with Python.": "Estoy pasando del área de TI al desarrollo back-end y construyendo mis conocimientos de Python.",
+    "I have a degree in Systems Analysis and Development and am seeking my first opportunity in technology. I am deepening my knowledge of Python and back-end development, turning learning into practical projects. I want to contribute solutions, learn from a team, and grow professionally.": "Soy graduado en Análisis y Desarrollo de Sistemas y busco mi primera oportunidad en el área de Tecnología. Estoy profundizando mis conocimientos de Python y desarrollo back-end, convirtiendo el aprendizaje en proyectos prácticos. Quiero aportar soluciones, aprender de un equipo y crecer profesionalmente.",
     "Explore projects ↘": "Ver proyectos ↘",
     "Get in touch": "Contacto",
     "Selected projects from my development journey.": "Proyectos seleccionados de mi trayectoria en desarrollo.",

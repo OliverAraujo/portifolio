@@ -84,8 +84,8 @@ function Hero({ language, t }) {
     <section className="wrap hero" aria-labelledby="nome">
       <div className="intro animate-in">
         <h1 id="nome">Oliver Araújo<span>.</span></h1>
-        <p className="role">Back-end · Python</p>
-        <p className="lede">{t('I’m transitioning from IT to back-end development and building my skills with Python.')}</p>
+        <p className="role">{t('Technology is my next step')}</p>
+        <p className="lede">{t('I have a degree in Systems Analysis and Development and am seeking my first opportunity in technology. I am deepening my knowledge of Python and back-end development, turning learning into practical projects. I want to contribute solutions, learn from a team, and grow professionally.')}</p>
         <div className="actions">
           <a className="button primary" href="#projetos">{t('Explore projects ↘')}</a>
           <a className="button" href="#contato">{t('Get in touch')}</a>
