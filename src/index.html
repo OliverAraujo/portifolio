@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfólio de Oliver Araújo, em transição para desenvolvimento back-end com Python.">
   <meta name="theme-color" content="#171819">
+  <script>
+    try {
+      const theme = localStorage.getItem('portfolio-theme');
+      document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+    } catch { document.documentElement.dataset.theme = 'dark'; }
+  </script>
   <title>Oliver Araújo · Portfólio Python</title>
 </head>
 <body id="inicio">

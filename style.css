@@ -6,6 +6,7 @@
   --muted: #b9b9b3;
   --line: #3b3d3d;
   --lime: #d0fd46;
+  --highlight: #d0fd46;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -30,10 +31,10 @@ h1 { font-size: clamp(4.5rem, 10vw, 9rem); letter-spacing: -.095em; line-height:
 .lede { margin-top: .45rem; color: var(--muted); max-width: 34ch; }
 .actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.4rem; }
 .button { display: inline-flex; align-items: center; min-height: 44px; padding: .55rem 1.1rem; border: 1px solid var(--line); border-radius: 5px; font-size: .9rem; font-weight: 700; }
-.primary { color: #171819; background: var(--lime); border-color: var(--lime); }
+.primary { color: #171819; background: var(--highlight); border-color: var(--highlight); }
 .primary:hover { color: #171819; background: #e0ff83; }
 .portrait { position: relative; isolation: isolate; align-self: end; min-width: 0; overflow: hidden; }
-.portrait::before { content: ''; position: absolute; z-index: -1; inset: 14% 0 auto 9%; aspect-ratio: 1; border-radius: 50%; background: var(--lime); }
+.portrait::before { content: ''; position: absolute; z-index: -1; inset: 14% 0 auto 9%; aspect-ratio: 1; border-radius: 50%; background: var(--highlight); }
 .portrait img { display: block; width: 100%; height: auto; }
 .section { padding-block: clamp(3rem, 7vw, 5.75rem); border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
 h2 { font-size: clamp(2.35rem, 5vw, 4rem); letter-spacing: -.065em; line-height: 1.05; }
@@ -121,7 +122,7 @@ h2::before { content: ''; display: inline-block; width: 5px; height: .8em; margi
 .github-link { margin-top: 1rem; }
 .about { grid-template-columns: 1fr; }
 .about p { max-width: 85ch; }
-.language-options button[aria-pressed="true"] { background: var(--lime); }
+.language-options button[aria-pressed="true"] { background: var(--highlight); }
 .language-options button[aria-pressed="false"] { background: transparent; }
 .button { font-family: inherit; cursor: pointer; }
 button.button { background: transparent; color: var(--text); margin-top: .75rem; }
@@ -139,4 +140,24 @@ button.button { background: transparent; color: var(--text); margin-top: .75rem;
   h1 { font-size: clamp(3rem, 13vw, 5.5rem); }
   .project-symbol { flex-basis: 60px; font-size: 1.5rem; }
   .project-card { gap: .75rem; }
+}
+
+/* Theme colors keep lime accents readable on a light background. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7f9f4;
+  --panel: #ffffff;
+  --text: #20251c;
+  --muted: #50594a;
+  --line: #cbd3c3;
+  --lime: #476300;
+}
+.header-controls { grid-column: 3; grid-row: 1; justify-self: end; display: flex; align-items: center; gap: .5rem; }
+.header .theme-toggle { display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border-radius: 50%; color: var(--text); }
+.theme-toggle svg { width: 22px; height: 22px; }
+.header .theme-toggle:hover { background: var(--panel); border-color: var(--lime); }
+@media (max-width: 380px) {
+  .header { grid-template-columns: 44px 1fr; }
+  .header .brand { justify-self: end; }
+  .header-controls { grid-column: 1 / -1; grid-row: 2; justify-self: end; }
 }

@@ -28,6 +28,8 @@ export const flagIcons = {
 };
 export const translations = {
   "pt-BR": {
+    "Switch to light theme": "Ativar tema claro",
+    "Switch to dark theme": "Ativar tema escuro",
     "Technology is my next step": "Tecnologia é o meu próximo passo",
     "Skip to content": "Ir para o conteúdo",
     "About": "Sobre",
@@ -54,6 +56,8 @@ export const translations = {
     "Try again": "Tentar novamente"
   },
   "es": {
+    "Switch to light theme": "Activar tema claro",
+    "Switch to dark theme": "Activar tema oscuro",
     "Technology is my next step": "La tecnología es mi próximo paso",
     "Skip to content": "Ir al contenido",
     "About": "Sobre mí",

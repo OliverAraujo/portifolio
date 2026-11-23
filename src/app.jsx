@@ -33,7 +33,7 @@ function LanguageSelector({ language, onChange }) {
   );
 }
 
-function Header({ language, onLanguageChange, t }) {
+function Header({ language, onLanguageChange, theme, onThemeChange, t }) {
   const [open, setOpen] = useState(false);
   const headerRef = useRef(null);
   const toggleRef = useRef(null);
@@ -74,7 +74,16 @@ function Header({ language, onLanguageChange, t }) {
           <a key={id} href={'#' + id} onClick={() => setOpen(false)}>{t(label)}</a>
         ))}
       </nav>
-      <LanguageSelector language={language} onChange={onLanguageChange} />
+      <div className="header-controls">
+        <button className="theme-toggle" type="button" onClick={onThemeChange}
+          aria-label={t(theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme')}
+          title={t(theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme')}>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            {theme === 'dark' ? <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></> : <path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z" />}
+          </svg>
+        </button>
+        <LanguageSelector language={language} onChange={onLanguageChange} />
+      </div>
     </header>
   );
 }
@@ -204,6 +213,12 @@ function Footer({ t }) {
 
 function App() {
   const [language, setLanguage] = useState('pt-BR');
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f7f9f4' : '#171819';
+    try { localStorage.setItem('portfolio-theme', theme); } catch { /* Theme still works when storage is unavailable. */ }
+  }, [theme]);
   const t = text => language === 'en' ? text : translations[language][text] || text;
   useEffect(() => {
     document.documentElement.lang = language;
@@ -212,7 +227,7 @@ function App() {
   return (
     <>
       <a className="skip" href="#conteudo">{t('Skip to content')}</a>
-      <Header language={language} onLanguageChange={setLanguage} t={t} />
+      <Header language={language} onLanguageChange={setLanguage} theme={theme} onThemeChange={() => setTheme(value => value === 'dark' ? 'light' : 'dark')} t={t} />
       <main id="conteudo">
         <Hero language={language} t={t} />
         <FeaturedProjects t={t} />
