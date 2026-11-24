@@ -93,11 +93,11 @@ function Hero({ language, t }) {
     <section className="wrap hero" aria-labelledby="nome">
       <div className="intro animate-in">
         <h1 id="nome">Oliver Araújo<span>.</span></h1>
-        <p className="role">{t('Technology is my next step')}</p>
-        <p className="lede">{t('I have a degree in Systems Analysis and Development and am seeking my first opportunity in technology. I am deepening my knowledge of Python and back-end development, turning learning into practical projects. I want to contribute solutions, learn from a team, and grow professionally.')}</p>
+        <p className="role">{t('Learning Python. Building solutions.')}</p>
+        <p className="lede">{t('A graduate in Systems Analysis and Development, seeking my first opportunity in technology with a focus on Python and back-end development.')}</p>
         <div className="actions">
-          <a className="button primary" href="#projetos">{t('Explore projects ↘')}</a>
-          <a className="button" href="#contato">{t('Get in touch')}</a>
+          <a className="button primary" href="#projetos">{t('Explore projects')}</a>
+          <a className="button" href={language === 'pt-BR' ? './resumes/Oliver_Araujo_PT.pdf' : './resumes/Oliver_Araujo_EN.pdf'} download>{language === 'es' ? 'Descargar CV (inglés)' : t('Download resume')}</a>
         </div>
       </div>
       <div className="portrait animate-in">
@@ -116,11 +116,30 @@ function ProjectCard({ project, t }) {
         {project.description && <p>{project.description}</p>}
         <div className="project-links">
           {project.language && <span className="tag">{project.language}</span>}
-          <a href={project.html_url}>{t('View code ↗')}</a>
+          <a href={project.html_url}>{t('View code')}</a>
         </div>
       </div>
     </li>
   );
+}
+
+function InventorySpotlight({ t }) {
+  const url = 'https://github.com/OliverAraujo/inventory-control-python';
+  return <article className="inventory-spotlight">
+    <div className="spotlight-copy">
+      <span className="study-label">{t('Learning project')}</span>
+      <h3>{t('Inventory control with Python')}</h3>
+      <p>{t('Product registration, incoming and outgoing stock, and inventory lookup.')}</p>
+      <div className="tech-chips"><span>Python</span><span>Terminal</span></div>
+      <p className="project-status"><strong>{t('Available:')}</strong> {t('inventory management in the terminal.')}</p>
+      <p className="project-status"><strong>{t('Next steps:')}</strong> {t('user interface and database.')}</p>
+      <div className="actions"><a className="button primary" href={url}>{t('View code')}</a><a className="button" href={url + '#readme'}>{t('About the project')}</a></div>
+    </div>
+    <div className="inventory-terminal" role="img" aria-label={t('Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.')}>
+      <div className="code-window-bar"><span /><span /><span /><b>Terminal</b></div>
+      <pre>{'INVENTORY CONTROL\n\n1 - Register a product\n2 - Record incoming stock\n3 - Record outgoing stock\n4 - View inventory\n5 - Exit\n\n> View inventory\n'}<strong>mouse: 12 units</strong></pre>
+    </div>
+  </article>;
 }
 
 function FeaturedProjects({ t }) {
@@ -139,7 +158,7 @@ function FeaturedProjects({ t }) {
         if (!response.ok) throw new Error('Project request failed');
         const data = await response.json();
         if (!Array.isArray(data)) throw new Error('Invalid projects');
-        const projects = data.filter(project => project && typeof project.name === 'string'
+        const projects = data.filter(project => project && project.name !== 'inventory-control-python' && typeof project.name === 'string'
           && typeof project.html_url === 'string'
           && /^https:\/\/github\.com\/[^/?#]+\/[^/?#]+$/.test(project.html_url));
         if (active) setState({ status: 'ready', projects });
@@ -159,7 +178,7 @@ function FeaturedProjects({ t }) {
   return (
     <Reveal className="wrap section" id="projetos">
       <h2>{t('Featured projects')}</h2>
-      <p className="muted">{t('Selected projects from my development journey.')}</p>
+      <InventorySpotlight t={t} />
       {state.status === 'loading' && <p className="muted" role="status">{t('Loading repositories…')}</p>}
       {state.status === 'error' && (
         <div role="status">
@@ -171,7 +190,7 @@ function FeaturedProjects({ t }) {
       {state.projects.length > 0 && <ul className="cards">{state.projects.map(project => (
         <ProjectCard key={project.html_url} project={project} t={t} />
       ))}</ul>}
-      <a className="button github-link" href="https://github.com/OliverAraujo">{t('View GitHub profile ↗')}</a>
+      <a className="button github-link" href="https://github.com/OliverAraujo">{t('View GitHub profile')}</a>
     </Reveal>
   );
 }
@@ -205,11 +224,7 @@ function About({ t, language }) {
       <div className="about-copy">
         <h2>{t('About me')}</h2>
         {content.paragraphs.map(text => <p key={text}>{text}</p>)}
-        <h3>{content.technicalTitle}</h3>
-        <ul>{content.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
-        <h3>{content.careerTitle}</h3>
-        <p>{content.roles}</p>
-        {content.closing.map(text => <p key={text}>{text}</p>)}
+        <ul className="tech-chips" aria-label={content.technicalTitle}>{['HTML', 'CSS', 'JavaScript', 'Python'].map(skill => <li key={skill}>{skill}</li>)}</ul>
       </div>
     </Reveal>
   );
@@ -218,19 +233,19 @@ function About({ t, language }) {
 function Contact({ t }) {
   return (
     <Reveal className="wrap section contact" id="contato">
-      <h2>{t('Contact')}</h2>
+      <h2>{t('Let’s talk?')}</h2>
       <p>{t('Get in touch with me via:')}</p>
       <div className="actions">
-        <a className="button" href="https://www.linkedin.com/in/oliver-ara%C3%BAjo/">{t('Connect on LinkedIn ↗')}</a>
-        <a className="button" href="https://www.instagram.com/euoliveraraujo/">Instagram ↗</a>
-        <a className="button" href="mailto:oliverandre1994@gmail.com">{t('Email ↗')}</a>
+        <a className="button" href="https://www.linkedin.com/in/oliver-ara%C3%BAjo/">{t('LinkedIn')}</a>
+        <a className="button" href="https://www.instagram.com/euoliveraraujo/">Instagram</a>
+        <a className="button" href="mailto:oliverandre1994@gmail.com">{t('Email')}</a>
       </div>
     </Reveal>
   );
 }
 
 function Footer({ t }) {
-  return <footer className="wrap footer"><span>© Oliver Araújo</span><a href="#inicio">{t('Back to top ↑')}</a></footer>;
+  return <footer className="wrap footer"><span>© Oliver Araújo</span><a href="#inicio">{t('Back to top')}</a></footer>;
 }
 
 function App() {

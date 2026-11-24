@@ -195,3 +195,45 @@ button.button { background: transparent; color: var(--text); margin-top: .75rem;
   .code-art { max-width: 370px; min-height: 330px; }
   .code-lines { padding: 1rem; font-size: .875rem; }
 }
+
+/* Portfolio layout approved from the portrait concept. */
+.wrap { max-width: 1200px; width: calc(100% - 48px); }
+.header { min-height: 82px; }
+.hero { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); min-height: 440px; gap: 3rem; }
+h1 { font-size: clamp(3rem, 5.8vw, 5.7rem); }
+.role { font-size: clamp(1.15rem, 2vw, 1.65rem); }
+.lede { margin-top: 1.1rem; max-width: 48ch; font-size: 1.075rem; }
+.portrait { max-width: 420px; }
+.portrait::before { inset: 20% 10% auto; }
+.button { border-radius: 10px; padding: .7rem 1.15rem; }
+.section { padding-block: 3rem; }
+h2 { font-size: clamp(2rem, 3.7vw, 3rem); }
+.inventory-spotlight { margin-top: 1.8rem; padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--line); border-radius: 18px; background: var(--panel); display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 2rem; align-items: center; }
+.spotlight-copy h3 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin: .8rem 0 .6rem; line-height: 1.15; }
+.spotlight-copy p { color: var(--muted); }
+.study-label { color: var(--lime); border: 1px solid var(--lime); border-radius: 8px; padding: .25rem .65rem; font-size: .875rem; }
+.tech-chips { display: flex; flex-wrap: wrap; gap: .7rem; list-style: none; padding: 0; margin: 1.3rem 0; }
+.tech-chips > * { border: 1px solid var(--line); border-radius: 9px; padding: .4rem .85rem; background: var(--panel); font-size: .95rem; }
+.project-status { margin-top: .45rem; }
+.project-status strong { color: var(--lime); }
+.inventory-terminal { min-width: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.inventory-terminal pre { margin: 0; padding: 1.5rem; font: .9rem/1.8 monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.inventory-terminal strong { color: var(--lime); }
+.cards { margin-top: 1rem; }
+.about { align-items: center; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); }
+.about-visual { position: static; padding-block: 0; }
+.about-copy p { margin-top: 1rem; font-size: 1.05rem; }
+.contact { text-align: center; }
+.contact p { margin-inline: auto; }
+.contact .actions { justify-content: center; }
+.contact .button { min-width: 150px; justify-content: center; }
+.footer { justify-content: center; }
+@media (max-width: 730px) {
+  .wrap { width: calc(100% - 32px); }
+  .hero, .about, .inventory-spotlight { grid-template-columns: minmax(0,1fr); }
+  .hero { gap: 1rem; min-height: auto; }
+  .portrait { max-width: 350px; }
+  .about { gap: 2rem; }
+  .inventory-terminal pre { padding: 1rem; font-size: .8rem; }
+  .contact .button { min-width: 130px; }
+}
