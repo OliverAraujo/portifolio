@@ -1,0 +1,19 @@
+Dear Hiring Team,
+
+My name is Oliver Araújo. I hold a degree in Systems Analysis and Development from Universidade Norte do Paraná (Unopar), and I am seeking an opportunity as a Junior Python Developer or Junior Back-end Developer. I want to apply my academic background, develop my skills, and contribute useful solutions to a team.
+
+I am currently strengthening my knowledge of Python, programming fundamentals, and back-end development through study and hands-on projects. I also have knowledge of HTML, CSS, and JavaScript, which broadens my understanding of web application development.
+
+One of my projects is a Python inventory management system that supports product registration, incoming and outgoing stock, and stock quantity lookup. This project allows me to practice loops, conditional logic, and data organization while addressing an everyday problem.
+
+I value continuous learning, responsibility, and teamwork. I am looking for an environment where I can learn from experienced professionals, receive feedback, and gradually take on more responsibility. I am also interested in remote opportunities and collaborating with international teams.
+
+Thank you for your time and consideration. I would welcome the opportunity to discuss my background, projects, and how I could contribute to your team.
+
+Sincerely,
+
+Oliver Araújo
+
+oliverandre1994@gmail.com
+
+https://oliveraraujo.github.io/portifolio/

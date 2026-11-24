@@ -1,0 +1,19 @@
+Prezada equipe de recrutamento,
+
+Meu nome é Oliver Araújo, sou formado em Análise e Desenvolvimento de Sistemas pela Universidade Norte do Paraná (Unopar) e busco uma oportunidade como Desenvolvedor Python Júnior ou Desenvolvedor Back-end Júnior. Quero aplicar minha formação, desenvolver minhas habilidades e contribuir com soluções úteis para a equipe.
+
+Atualmente, aprofundo meus conhecimentos em Python, lógica de programação e desenvolvimento back-end por meio de estudos e projetos práticos. Também possuo conhecimentos em HTML, CSS e JavaScript, que ampliam minha compreensão do desenvolvimento de aplicações web.
+
+Entre meus projetos está um sistema de controle de estoque em Python, com cadastro de produtos, registro de entradas e saídas e consulta das quantidades disponíveis. Esse projeto me permite praticar estruturas de repetição, condições e organização de dados, conectando o aprendizado a um problema do dia a dia.
+
+Valorizo o aprendizado contínuo, a responsabilidade e o trabalho em equipe. Busco um ambiente em que possa aprender com profissionais experientes, receber feedback e assumir responsabilidades progressivamente. Também tenho interesse em oportunidades remotas e em colaborar com equipes internacionais.
+
+Agradeço pela atenção e fico à disposição para conversar sobre minha trajetória, meus projetos e como posso contribuir para a equipe.
+
+Atenciosamente,
+
+Oliver Araújo
+
+oliverandre1994@gmail.com
+
+https://oliveraraujo.github.io/portifolio/

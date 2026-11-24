@@ -98,6 +98,7 @@ function Hero({ language, t }) {
         <div className="actions">
           <a className="button primary" href="#projetos">{t('Explore projects')}</a>
           <a className="button" href={language === 'pt-BR' ? './resumes/Oliver_Araujo_PT.pdf' : './resumes/Oliver_Araujo_EN.pdf'} download>{language === 'es' ? 'Descargar CV (inglés)' : t('Download resume')}</a>
+          <a className="button" data-cover-letter="" href={'./cover-letter.html?lang=' + encodeURIComponent(language)}>{language === 'pt-BR' ? 'Carta de apresentação' : language === 'es' ? 'Carta de presentación' : 'Cover letter'}</a>
         </div>
       </div>
       <div className="portrait animate-in">
