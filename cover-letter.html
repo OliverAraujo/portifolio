@@ -6,7 +6,9 @@ let language = new URLSearchParams(location.search).get('lang');
 if (!Object.hasOwn(letters,language)) language='pt-BR';
 const el=id=>document.getElementById(id);
 function render(){
- const t=letters[language]; document.documentElement.lang=language; document.title=t.title+' | Oliver Araújo';
+ const t=letters[language]; document.documentElement.lang=language;
+ try {localStorage.setItem('portfolio-language',language);} catch {}
+ el('back').href='./?lang='+encodeURIComponent(language); document.title=t.title+' | Oliver Araújo';
  el('title').textContent=t.title; el('copy').textContent=t.copy; el('print').textContent=t.print; el('back').textContent=t.back; el('note').textContent=t.note;
  el('paragraphs').replaceChildren(...[t.salute,...t.paragraphs,t.close,'Oliver Araújo'].map(text=>{const p=document.createElement('p');p.textContent=text;return p;}));
  el('portfolio').textContent=t.portfolio; el('status').textContent='';

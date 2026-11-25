@@ -98,7 +98,6 @@ function Hero({ language, t }) {
         <div className="actions">
           <a className="button primary" href="#projetos">{t('Explore projects')}</a>
           <a className="button" href={language === 'pt-BR' ? './resumes/Oliver_Araujo_PT.pdf' : './resumes/Oliver_Araujo_EN.pdf'} download>{language === 'es' ? 'Descargar CV (inglés)' : t('Download resume')}</a>
-          <a className="button" data-cover-letter="" href={'./cover-letter.html?lang=' + encodeURIComponent(language)}>{language === 'pt-BR' ? 'Carta de apresentação' : language === 'es' ? 'Carta de presentación' : 'Cover letter'}</a>
         </div>
       </div>
       <div className="portrait animate-in">
@@ -131,10 +130,14 @@ function InventorySpotlight({ t }) {
       <span className="study-label">{t('Learning project')}</span>
       <h3>{t('Inventory control with Python')}</h3>
       <p>{t('Product registration, incoming and outgoing stock, and inventory lookup.')}</p>
-      <div className="tech-chips"><span>Python</span><span>Terminal</span></div>
-      <p className="project-status"><strong>{t('Available:')}</strong> {t('inventory management in the terminal.')}</p>
-      <p className="project-status"><strong>{t('Next steps:')}</strong> {t('user interface and database.')}</p>
-      <div className="actions"><a className="button primary" href={url}>{t('View code')}</a><a className="button" href={url + '#readme'}>{t('About the project')}</a></div>
+      <p>{t('Challenge: prevent invalid movements and keep stock consistent.')}</p>
+      <p>{t('Decisions: dictionaries for product lookup, functions for business rules and JSON for persistence.')}</p>
+      <p>{t('Tests cover invalid quantities, insufficient stock, reopening saved data and failed writes.')}</p>
+      <p>{t('Current scope: one user in the terminal; no database or web API yet.')}</p>
+      <div className="tech-chips"><span>Python</span><span>JSON</span><span>unittest</span></div>
+      <p className="project-status"><strong>{t('Available:')}</strong> {t('terminal inventory with automatic JSON saving.')}</p>
+      <p className="project-status"><strong>{t('Next steps:')}</strong> {t('movement history, database and web API.')}</p>
+      <div className="actions"><a className="button primary" href={url}>{t('View code')}</a><a className="button" href={url + '#example-to-reproduce'}>{t('Run the example')}</a></div>
     </div>
     <div className="inventory-terminal" role="img" aria-label={t('Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.')}>
       <div className="code-window-bar"><span /><span /><span /><b>Terminal</b></div>
@@ -225,7 +228,12 @@ function About({ t, language }) {
       <div className="about-copy">
         <h2>{t('About me')}</h2>
         {content.paragraphs.map(text => <p key={text}>{text}</p>)}
-        <ul className="tech-chips" aria-label={content.technicalTitle}>{['HTML', 'CSS', 'JavaScript', 'Python'].map(skill => <li key={skill}>{skill}</li>)}</ul>
+        <ul aria-label={content.technicalTitle}>
+          <li>{t('Python: dictionaries, input validation, functions and JSON files.')}</li>
+          <li>{t('HTML, CSS and JavaScript: portfolio structure, styles and interactions.')}</li>
+          <li>{t('Git and GitHub: version control and project documentation.')}</li>
+        </ul>
+        <a className="button" href={'./cover-letter.html?lang=' + encodeURIComponent(language)}>{t('Read cover letter')}</a>
       </div>
     </Reveal>
   );
@@ -250,7 +258,15 @@ function Footer({ t }) {
 }
 
 function App() {
-  const [language, setLanguage] = useState('pt-BR');
+  const [language, setLanguage] = useState(() => {
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    if (Object.hasOwn(languageSettings, requested)) return requested;
+    try {
+      const saved = localStorage.getItem('portfolio-language');
+      if (Object.hasOwn(languageSettings, saved)) return saved;
+    } catch { /* Language selection works without storage. */ }
+    return 'pt-BR';
+  });
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -260,6 +276,10 @@ function App() {
   const t = text => language === 'en' ? text : translations[language][text] || text;
   useEffect(() => {
     document.documentElement.lang = language;
+    try { localStorage.setItem('portfolio-language', language); } catch {}
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', language);
+    window.history.replaceState(null, '', url);
     document.title = languageSettings[language].title;
   }, [language]);
   return (

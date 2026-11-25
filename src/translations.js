@@ -71,7 +71,18 @@ export const translations = {
     "inventory management in the terminal.": "controle pelo terminal.",
     "user interface and database.": "interface e banco de dados.",
     "About the project": "Conhecer o projeto",
-    "Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.": "Exemplo: 10 unidades mais 5 recebidas menos 3 retiradas resultam em 12 unidades no estoque."
+    "Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.": "Exemplo: 10 unidades mais 5 recebidas menos 3 retiradas resultam em 12 unidades no estoque.",
+    "Read cover letter": "Ler carta de apresentação",
+    "Python: dictionaries, input validation, functions and JSON files.": "Python: dicionários, validação de entradas, funções e arquivos JSON.",
+    "HTML, CSS and JavaScript: portfolio structure, styles and interactions.": "HTML, CSS e JavaScript: estrutura, estilos e interações do portfólio.",
+    "Git and GitHub: version control and project documentation.": "Git e GitHub: versionamento e documentação dos projetos.",
+    "terminal inventory with automatic JSON saving.": "controle pelo terminal com gravação automática em JSON.",
+    "movement history, database and web API.": "histórico de movimentações, banco de dados e API web.",
+    "Challenge: prevent invalid movements and keep stock consistent.": "Desafio: impedir movimentações inválidas e manter o estoque consistente.",
+    "Decisions: dictionaries for product lookup, functions for business rules and JSON for persistence.": "Decisões: dicionários para consultar produtos, funções para as regras e JSON para salvar os dados.",
+    "Tests cover invalid quantities, insufficient stock, reopening saved data and failed writes.": "Os testes verificam quantidades inválidas, estoque insuficiente, reabertura dos dados e falhas ao salvar.",
+    "Current scope: one user in the terminal; no database or web API yet.": "Escopo atual: um usuário no terminal; ainda sem banco de dados ou API web.",
+    "Run the example": "Executar o exemplo"
   },
   "es": {
     "Switch to light theme": "Activar tema claro",
@@ -117,6 +128,17 @@ export const translations = {
     "inventory management in the terminal.": "control desde la terminal.",
     "user interface and database.": "interfaz y base de datos.",
     "About the project": "Conocer el proyecto",
-    "Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.": "Ejemplo: 10 unidades más 5 recibidas menos 3 retiradas resultan en 12 unidades en inventario."
+    "Example: 10 units plus 5 received minus 3 removed equals 12 units in stock.": "Ejemplo: 10 unidades más 5 recibidas menos 3 retiradas resultan en 12 unidades en inventario.",
+    "Read cover letter": "Leer carta de presentación",
+    "Python: dictionaries, input validation, functions and JSON files.": "Python: diccionarios, validación de entradas, funciones y archivos JSON.",
+    "HTML, CSS and JavaScript: portfolio structure, styles and interactions.": "HTML, CSS y JavaScript: estructura, estilos e interacciones del portafolio.",
+    "Git and GitHub: version control and project documentation.": "Git y GitHub: control de versiones y documentación de proyectos.",
+    "terminal inventory with automatic JSON saving.": "control desde la terminal con guardado automático en JSON.",
+    "movement history, database and web API.": "historial de movimientos, base de datos y API web.",
+    "Challenge: prevent invalid movements and keep stock consistent.": "Desafío: impedir movimientos inválidos y mantener un inventario consistente.",
+    "Decisions: dictionaries for product lookup, functions for business rules and JSON for persistence.": "Decisiones: diccionarios para consultar productos, funciones para las reglas y JSON para guardar los datos.",
+    "Tests cover invalid quantities, insufficient stock, reopening saved data and failed writes.": "Las pruebas verifican cantidades inválidas, inventario insuficiente, reapertura de datos y fallos al guardar.",
+    "Current scope: one user in the terminal; no database or web API yet.": "Alcance actual: un usuario en la terminal; aún sin base de datos ni API web.",
+    "Run the example": "Ejecutar el ejemplo"
   }
 };
