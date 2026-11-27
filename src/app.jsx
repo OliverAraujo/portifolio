@@ -8,15 +8,41 @@ import '../style.css';
 function Reveal({ children, className = '', ...props }) {
   const ref = useRef(null);
   useEffect(() => {
-    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const root = ref.current;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!('IntersectionObserver' in window) || media.matches) return;
+    const observed = new Set();
     const observer = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        ref.current.classList.add('animate-in');
-        observer.disconnect();
-      }
-    }, { threshold: 0.08 });
-    observer.observe(ref.current);
-    return () => observer.disconnect();
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) return;
+        target.classList.add('is-visible');
+        observer.unobserve(target);
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+    const register = () => {
+      root.querySelectorAll(':scope > h2, :scope > p, :scope > .actions, :scope > .github-link, .inventory-spotlight, .project-card, .about-visual, .about-copy').forEach(element => {
+        if (observed.has(element)) return;
+        observed.add(element);
+        element.classList.add('scroll-reveal');
+        observer.observe(element);
+      });
+    };
+    register();
+    const mutations = new MutationObserver(register);
+    mutations.observe(root, { childList: true, subtree: true });
+    const showAll = () => {
+      if (!media.matches) return;
+      observer.disconnect();
+      mutations.disconnect();
+      observed.forEach(element => element.classList.add('is-visible'));
+    };
+    media.addEventListener('change', showAll);
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+      media.removeEventListener('change', showAll);
+      observed.forEach(element => element.classList.remove('scroll-reveal', 'is-visible'));
+    };
   }, []);
   return <section {...props} ref={ref} className={className}>{children}</section>;
 }

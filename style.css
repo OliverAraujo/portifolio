@@ -237,3 +237,32 @@ h2 { font-size: clamp(2rem, 3.7vw, 3rem); }
   .inventory-terminal pre { padding: 1rem; font-size: .8rem; }
   .contact .button { min-width: 130px; }
 }
+
+/* Subtle motion: preserve layout, flag controls and all content. */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .65s ease-out, transform .65s cubic-bezier(.22, 1, .36, 1), border-color .2s ease;
+  }
+  .scroll-reveal.is-visible, .scroll-reveal:focus-within {
+    opacity: 1;
+    transform: none;
+  }
+  .project-card.scroll-reveal.is-visible:hover { transform: translateY(-4px); }
+  .portrait::before { animation: portrait-glow 6s ease-in-out infinite alternate; }
+  .intro.animate-in { animation-duration: .8s; }
+  .portrait.animate-in { animation-duration: .9s; animation-delay: .18s; }
+}
+@keyframes portrait-glow {
+  from { box-shadow: 0 0 12px 0 #d0fd4610; }
+  to { box-shadow: 0 0 32px 6px #d0fd4628; }
+}
+@media (max-width: 730px) and (prefers-reduced-motion: no-preference) {
+  .scroll-reveal { transform: translateY(10px); transition-duration: .45s; }
+  .scroll-reveal.is-visible, .scroll-reveal:focus-within { transform: none; }
+  .portrait::before, .code-window, .orbit-one { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal { opacity: 1; transform: none; transition: none; }
+}
